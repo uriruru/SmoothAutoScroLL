@@ -1,0 +1,133 @@
+  <section class="hero is-white">
+    <div class="hero-body">
+      <div class="container has-text-centered" style="max-width: 2000px;">
+  
+        <Strong style="color: black;">GET IN TOUCH</Strong><br><br>
+  
+        <div class="slider-container">
+          <div class="slider-track">
+            <div class="slide">
+              <div class="slide-info">
+  
+                <p class="title" style="font-size: 55px; color: rgb(105, 105, 105);">
+                  <span style="color: rgb(107, 116, 219);">Linkedin.</span> Hire me now.</p>
+  
+              </div>
+            </div>
+            <div class="slide">
+  
+              <p class="title" style="font-size: 55px; color: rgb(105, 105, 105);">
+                <span style="color: rgb(107, 116, 219);">Linkedin.</span> Hire me now.</p>
+  
+            </div>
+  
+            <div class="slide">
+              <p class="title" style="font-size: 55px; color: rgb(105, 105, 105);">
+                <span style="color: rgb(107, 116, 219);">Linkedin.</span> Hire me now.</p>
+            </div>
+  
+            <div class="slide">
+              <p class="title" style="font-size: 55px; color: rgb(105, 105, 105);">
+                <span style="color: rgb(107, 116, 219);">Linkedin.</span> Hire me now.</p>
+            </div>
+  
+            <div class="slide">
+              <p class="title" style="font-size: 55px; color: rgb(105, 105, 105);">
+                <span style="color: rgb(107, 116, 219);">Linkedin.</span> Hire me now.</p>
+            </div>
+          </div>
+          <button style="opacity: 0;" class="prev-button button is-white">&#10094;</button>
+          <button style="opacity: 0;" class="next-button button is-white">&#10095;</button>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+    }
+  
+    .slider-track {
+      display: flex;
+      transition: transform 1s ease-in-out; /* Adjust the transition duration as needed */
+    }
+  
+    .slide {
+      flex-shrink: 0;
+      width: 100%;
+    }
+  
+    .slide-image {
+      width: 100%;
+      height: auto;
+    }
+  
+    .prev-button,
+    .next-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 10px;
+      font-size: 20px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      cursor: pointer;
+    }
+  
+    .prev-button {
+      left: 10px;
+    }
+  
+    .next-button {
+      right: 10px;
+    }
+  </style>
+  
+  <script>
+    const prevButton = document.querySelector('.prev-button');
+    const nextButton = document.querySelector('.next-button');
+    const sliderTrack = document.querySelector('.slider-track');
+    const slides = document.querySelectorAll('.slide');
+    let slideWidth = slides[0].offsetWidth; // Adjusted to offsetWidth
+    const slideCount = slides.length;
+    let position = 0;
+  
+    // Set initial position of the slider track
+    sliderTrack.style.transform = `translateX(${position}px)`;
+  
+    // Slide to the previous image
+    prevButton.addEventListener('click', () => {
+      position += slideWidth;
+      position = Math.min(position, 0);
+      sliderTrack.style.transform = `translateX(${position}px)`;
+    });
+  
+    // Slide to the next image
+    nextButton.addEventListener('click', () => {
+      position -= slideWidth;
+      const minPosition = -(slideWidth * (slideCount - 1));
+      position = Math.max(position, minPosition);
+      sliderTrack.style.transform = `translateX(${position}px)`;
+    });
+  
+    // Adjust slide width on window resize
+    window.addEventListener('resize', () => {
+      slideWidth = slides[0].offsetWidth;
+      position = -slideWidth * (slideCount - 1);
+      sliderTrack.style.transform = `translateX(${position}px)`;
+    });
+  
+    // Infinite slide with slower auto-slide
+    setInterval(() => {
+      position -= slideWidth;
+      const minPosition = -(slideWidth * (slideCount - 1));
+      if (position < minPosition) {
+        position = 0;
+      }
+      sliderTrack.style.transform = `translateX(${position}px)`;
+    }, 6000); /* Adjust the interval duration as needed */
+  </script>
